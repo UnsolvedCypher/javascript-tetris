@@ -32,6 +32,8 @@
       <p><canvas id="upcoming"></canvas></p>
       <p>score <span id="score">00000</span></p>
       <p>rows <span id="rows">0</span></p>
+      <p>segmentation <span id="rows">0</span></p>
+      <p>segmentation percentage <span id="rows">0</span></p>
     </div>
     <canvas id="canvas">
       Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
@@ -111,6 +113,7 @@
     //                               0x44C0
     //
     //-------------------------------------------------------------------------
+   
 
     var i = { size: 4, blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: 'cyan'   };
     var j = { size: 3, blocks: [0x44C0, 0x8E00, 0x6440, 0x0E20], color: 'blue'   };
@@ -119,6 +122,8 @@
     var s = { size: 3, blocks: [0x06C0, 0x8C40, 0x6C00, 0x4620], color: 'green'  };
     var t = { size: 3, blocks: [0x0E40, 0x4C40, 0x4E00, 0x4640], color: 'purple' };
     var z = { size: 3, blocks: [0x0C60, 0x4C80, 0xC600, 0x2640], color: 'red'    };
+    var segmentationNumerator = 0;
+    var segmentationDenom = 0;
 
     //------------------------------------------------
     // do the bit manipulation and iterate through each
@@ -271,6 +276,17 @@
         if (dt > step) {
           dt = dt - step;
           drop();
+        }
+      }
+      var ivar = 0;
+      var jvar = 0;
+      for (i = 0; i < 10; i++) {
+        for (j = 0; j < 20; j++) {
+          if occupied(current.type, current.x, current.y, current.dir) {
+            alert("X: " + i + ", Y: " + j + " occupied"); 
+          } else {
+            alert("X: " + i + ", Y: " + j + " unoccupied");
+          }
         }
       }
     }
